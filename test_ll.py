@@ -1,45 +1,63 @@
 from linked_list import LinkedList
 
-# Test cases
-ll = LinkedList()
-ll.print()  # Should print "Empty list"
+def test_linked_list():
+    # Initialize LinkedList
+    ll = LinkedList()
 
-# Append test
-print("----Append test-----")
-ll.append(1)
-ll.append(2)
-ll.append(3)
-ll.append(4)
-ll.append(5)
-ll.print()  # Should print "1 -> 2 -> 3 -> 4 -> 5"
+    # Test printing empty list
+    print("Test: Print empty list")
+    ll.print()  # Should print "Empty list"
 
-# Delete test
-print("----Delete test-----")
-ll.delete(3)
-ll.print()  # Should print "1 -> 2 -> 4 -> 5"
-ll.delete(6)  # Should print "6 not found in list"
+    # Test appending elements
+    print("\nTest: Append elements")
+    ll.append(1)
+    ll.append(2)
+    ll.append(3)
+    ll.append(4)
+    ll.append(5)
+    ll.print()  # Should print "1 -> 2 -> 3 -> 4 -> 5"
 
-# Remove duplicates O(N) test
-print("----O(N) remove duplicates test-----")
-ll.append(4)
-ll.append(2)
-ll.print()  # Should print "1 -> 2 -> 4 -> 5 -> 4 -> 2"
-ll.remove_dups_on()
-ll.print()  # Should print "1 -> 2 -> 4 -> 5"
-print("size: ", ll.size)
+    # Test deleting an element
+    print("\nTest: Delete element 3")
+    ll.delete(3)
+    ll.print()  # Should print "1 -> 2 -> 4 -> 5"
+    
+    print("\nTest: Delete element 6 (non-existent)")
+    ll.delete(6)  # Should print "6 not found in list"
 
-# Remove duplicates O(N^2) test
-print("----O(N^2) remove duplicates test-----")
-ll.append(2)
-ll.append(4)
-ll.print()  # Should print "1 -> 2 -> 4 -> 5 -> 2 -> 4"
-ll.remove_dups_onsquare()
-ll.print()  # Should print "1 -> 2 -> 4 -> 5"
-print("size: ", ll.size)
+    # Test removing duplicates (O(N))
+    print("\nTest: Remove duplicates (O(N))")
+    ll.append(4)
+    ll.append(2)
+    ll.print()  # Should print "1 -> 2 -> 4 -> 5 -> 4 -> 2"
+    ll.remove_dups_on()
+    ll.print()  # Should print "1 -> 2 -> 4 -> 5"
 
-# Kth to last element test
-print("----kth to last element test----")
-ll.k_to_last_size(0)  # Should print "5"
-ll.k_to_last_size(2)  # Should print "2"
-ll.k_to_last_size(5)  # Should print "Invalid kth to last"
+    # Test removing duplicates (O(N^2))
+    print("\nTest: Remove duplicates (O(N^2))")
+    ll.append(2)
+    ll.append(4)
+    ll.print()  # Should print "1 -> 2 -> 4 -> 5 -> 2 -> 4"
+    ll.remove_dups_onsquare()
+    ll.print()  # Should print "1 -> 2 -> 4 -> 5"
 
+    # Test k-th to last element (size based)
+    print("\nTest: k-th to last element (size based)")
+    ll.k_to_last_size(0)  # Should print "5"
+    ll.k_to_last_size(2)  # Should print "2"
+    ll.k_to_last_size(5)  # Should print "invalid kth to last"
+
+    # Test k-th to last element (two pointers)
+    print("\nTest: k-th to last element (two pointers)")
+    ll.k_to_last_two_pointers(0)  # Should print "0 to last element is 5"
+    ll.k_to_last_two_pointers(2)  # Should print "2 to last element is 2"
+    ll.k_to_last_two_pointers(5)  # Should print "5 is invalid k to last element"
+
+    # Test k-th to last element (recursive)
+    print("\nTest: k-th to last element (recursive)")
+    ll.k_to_last_size_rec(0)  # Should print "0 to last element is 5"
+    ll.k_to_last_size_rec(2)  # Should print "2 to last element is 2"
+    ll.k_to_last_size_rec(5)  # Should print "5 is an invalid k to last element for this linkedlist"
+
+# Run the tests
+test_linked_list()

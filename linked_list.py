@@ -5,9 +5,11 @@ class Node:
 
 class LinkedList():
 
+
 	def __init__(self):
 		self.head = Node()
 		self.size = 0
+
 
 	def append(self, d):
 		end = Node(d)
@@ -17,6 +19,7 @@ class LinkedList():
 		while n.next != None:
 			n = n.next
 		n.next = end
+
 
 	def print(self):
 		if self.head.next is None:
@@ -30,6 +33,7 @@ class LinkedList():
 			else: print(n.data)
 			n = n.next
 
+
 	def delete(self, d):
 		n = self.head
 
@@ -42,6 +46,7 @@ class LinkedList():
 			n = n.next
 
 		print(f"{d} not found in list")
+
 
 	def remove_dups_on(self):
 		dup_tracker = set()
@@ -57,6 +62,7 @@ class LinkedList():
 				dup_tracker.add(n.next.data)
 				n = n.next
 
+
 	def remove_dups_onsquare(self):
 		n = self.head.next
 
@@ -71,6 +77,7 @@ class LinkedList():
 					m = m.next
 			if n != None: n = n.next
 
+
 	def k_to_last_size(self, k):
 		if k > self.size:
 			print("invalid kth to last")
@@ -84,8 +91,52 @@ class LinkedList():
 			n = n.next
 		print(n.data)
 
+
+	def k_to_last_two_pointers(self, k):
+		# Calculate size of array then go back to kth to last? (No need maybe do in another implementation)
+		# First pointer is k ahead of second pointer
+		# When second pointer reaches end of array print first pointer data
+		# If second pointer is None then print invalid k to last element and return nothing
+		p1 = self.head.next
+		p2 = self.head.next
+		i = 0
+
+		while i != k:
+			if p2 is None:
+				print(f"{k} is invalid k to last element")
+				return
+			else:
+				i += 1
+				p2 = p2.next
+
+		while p2.next is not None:
+			p1 = p1.next
+			p2 = p2.next
+
+		print(f"{k} to last element is {p1.data}")
+
+
+	def k_to_last_size_rec(self, k):
+		def _k_to_last(node, k):
+			if node is None:
+				return -1, None
+
+			index, result = _k_to_last(node.next, k)
+
+			index += 1
+
+			if index == k:
+				return index, node
+
+
+			return index, result
+
+		index, node = _k_to_last(self.head.next, k)
+		
+		if node: print(f"{k} to last element is {node.data}")
+		else: print(f"{k} is an invalid k to last element for this linkedlist")
+
 	
-	# Create recursive and iterative solution ^
 
 
 
