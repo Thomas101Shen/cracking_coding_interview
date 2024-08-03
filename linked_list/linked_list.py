@@ -271,4 +271,37 @@ class LinkedList():
 
 		return sum_head, cur_node
 
+	def sum_list_optimized(self, A, B, carry: int = 0):
+		carry = 0
+		dummy_head = Node()
+		cur = dummy_head
+
+		while A is not None or B is not None or carry != 0:
+			total = carry
+			if A:
+				total += A.data
+				A = A.next
+			if B:
+				total += B.data
+				B = B.next
+
+			cur_val = total % 10
+			carry = total // 10
+
+			cur.next = Node(cur_val)
+			cur = cur.next
+		return self.reverse_ls(dummy_head.next)
+
+	def reverse_ls(self, node):
+		prev = None
+		current = node
+
+		while current is not None:
+			next_node = current.next
+			current.next = prev
+			prev = current
+			current = next_node
+
+		return prev
+
 

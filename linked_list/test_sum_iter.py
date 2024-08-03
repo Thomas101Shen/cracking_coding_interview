@@ -12,7 +12,7 @@ def test_sum_list():
     ll1 = LinkedList()
     ll2 = LinkedList()
     result = LinkedList()
-    result.head, variable = ll1.sum_list(ll1.head.next, ll2.head.next)
+    result.head.next = ll1.sum_list_optimized(ll1.head.next, ll2.head.next)
     print("Test: Sum of two empty lists")
     result.print()  # Should print "Empty list"
 
@@ -22,7 +22,7 @@ def test_sum_list():
     ll2.append(4)
     ll2.append(3)
     result = LinkedList()
-    result.head, variable = ll1.sum_list(ll1.head.next, ll2.head.next)
+    result.head.next = ll1.sum_list_optimized(ll1.head.next, ll2.head.next)
     print("Test: Sum of one empty list and one non-empty list")
     result.print()  # Should print "3 -> 4"
 
@@ -34,7 +34,7 @@ def test_sum_list():
     ll2.append(5)
     ll2.append(4)
     result = LinkedList()
-    result.head, variable = ll1.sum_list(ll1.head.next, ll2.head.next)
+    result.head.next = ll1.sum_list_optimized(ll1.head.next, ll2.head.next)
     print("Test: Sum of two non-empty lists with no carryover")
     result.print()  # Should print "6 -> 8"
 
@@ -46,7 +46,7 @@ def test_sum_list():
     ll2.append(8)
     ll2.append(7)
     result = LinkedList()
-    result.head, variable = ll1.sum_list(ll1.head.next, ll2.head.next)
+    result.head.next = ll1.sum_list_optimized(ll1.head.next, ll2.head.next)
     print("Test: Sum of two non-empty lists with carryover")
     result.print()  # Should print "1 -> 3 -> 4"
 
@@ -58,9 +58,8 @@ def test_sum_list():
     ll2 = LinkedList()
     ll2.append(1)
     result = LinkedList()
-    result.head, variable = ll1.sum_list(ll1.head.next, ll2.head.next)
+    result.head.next = ll1.sum_list_optimized(ll1.head.next, ll2.head.next)
     print("Test: Sum of lists with different lengths")
     result.print()  # Should print "1 -> 0 -> 0 -> 0"
 
-# Run the tests
 test_sum_list()
