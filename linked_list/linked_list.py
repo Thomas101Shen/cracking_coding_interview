@@ -235,7 +235,7 @@ class LinkedList():
 				right_tail.next = it
 				right_tail = it
 
-				
+
 			it = next_node
 
 		# combine left and right side
@@ -244,7 +244,31 @@ class LinkedList():
 		# Update original list's head to point to new partitioned list
 		self.head.next = left_head.next
 
-	def sum_list():
-		pass
+	def sum_list(self, A, B, carry: int = 0):
+		# Non trivial solution, no converting to str or int and adding and re converting
+
+		if A is None and B is None and carry == 0:
+			sum_head = Node()
+			return sum_head, sum_head
+
+		total = carry
+
+		if A:
+			total += A.data
+			A = A.next
+		if B:
+			total += B.data
+			B = B.next
+
+		carry = total // 10
+		cur_val = total % 10
+
+		cur_node = Node(cur_val)
+
+		sum_head, prev_node = self.sum_list(A, B, carry)
+
+		prev_node.next = cur_node
+
+		return sum_head, cur_node
 
 
