@@ -116,7 +116,7 @@ class LinkedList():
 		print(f"{k} to last element is {p1.data}")
 
 
-	def k_to_last_size_rec(self, k):
+	def k_to_last_rec(self, k):
 		def _k_to_last(node, k):
 			if node is None:
 				return -1, None
@@ -136,7 +136,32 @@ class LinkedList():
 		if node: print(f"{k} to last element is {node.data}")
 		else: print(f"{k} is an invalid k to last element for this linkedlist")
 
-	
+	def k_to_last_calc_size(self, k):
+		# Calculate size then incriment to size - k
+
+		size = 0
+		cur = self.head.next
+
+		while cur != None:
+			size += 1
+			cur = cur.next
+
+		if k >= size:
+			print(f"{k} is invalid k to last")
+			return
+		else:
+			index = 0
+			result = self.head.next
+			while index != size - k - 1:
+				result = result.next
+				index += 1
+			print(f"{k} to last element is {result.data}")
+			return
+
+
+
+
+
 
 
 

@@ -55,9 +55,15 @@ def test_linked_list():
 
     # Test k-th to last element (recursive)
     print("\nTest: k-th to last element (recursive)")
-    ll.k_to_last_size_rec(0)  # Should print "0 to last element is 5"
-    ll.k_to_last_size_rec(2)  # Should print "2 to last element is 2"
-    ll.k_to_last_size_rec(5)  # Should print "5 is an invalid k to last element for this linkedlist"
+    ll.k_to_last_rec(0)  # Should print "0 to last element is 5"
+    ll.k_to_last_rec(2)  # Should print "2 to last element is 2"
+    ll.k_to_last_rec(5)  # Should print "5 is an invalid k to last element for this linkedlist"
+
+    # Test k-th to last element (calculate size)
+    print("\nTest: k-th to last element (calculate size)")
+    ll.k_to_last_calc_size(0)  # Should print "0 to last element is 5"
+    ll.k_to_last_calc_size(2)  # Should print "2 to last element is 2"
+    ll.k_to_last_calc_size(5)  # Should print "5 is an invalid k to last
 
 # Run the tests
 test_linked_list()
