@@ -195,10 +195,91 @@ def test_partition():
     ll.partition(10)
     ll.print()  # Should print "5 -> 8 -> 2 -> 1 -> 10"
 
+def test_partition_v1():
+    # Initialize LinkedList
+    ll = LinkedList()
+
+    # Test case: partition an empty list (should remain empty)
+    print("----------Test: Partition an empty list v1----------")
+    ll.partition_optimize_v1(3)
+    ll.print()  # Should print "Empty list"
+
+    # Test case: partition a list with one element (should remain unchanged)
+    ll.append(1)
+    print("\nTest: Partition a list with one element")
+    ll.partition_optimize_v1(3)
+    ll.print()  # Should print "1"
+
+    # Test case: partition a list where all elements are less than the pivot
+    ll = LinkedList()
+    ll.append(1)
+    ll.append(2)
+    ll.append(1)
+    print("\nTest: Partition a list where all elements are less than the pivot")
+    ll.partition_optimize_v1(3)
+    ll.print()  # Should print "1 -> 2 -> 1"
+
+    # Test case: partition a list where all elements are greater than the pivot
+    ll = LinkedList()
+    ll.append(4)
+    ll.append(5)
+    ll.append(6)
+    print("\nTest: Partition a list where all elements are greater than the pivot")
+    ll.partition_optimize_v1(3)
+    ll.print()  # Should print "4 -> 5 -> 6"
+
+    # Test case: partition a list with elements both less than and greater than the pivot
+    ll = LinkedList()
+    ll.append(3)
+    ll.append(5)
+    ll.append(8)
+    ll.append(5)
+    ll.append(10)
+    ll.append(2)
+    ll.append(1)
+    print("\nTest: Partition a list with elements both less than and greater than the pivot")
+    ll.partition_optimize_v1(5)
+    ll.print()  # Should print "3 -> 2 -> 1 -> 5 -> 5 -> 8 -> 10"
+
+    # Test case: partition a list with elements equal to the pivot
+    ll = LinkedList()
+    ll.append(5)
+    ll.append(5)
+    ll.append(5)
+    ll.append(5)
+    ll.append(5)
+    ll.append(5)
+    ll.append(5)
+    print("\nTest: Partition a list with elements equal to the pivot")
+    ll.partition_optimize_v1(5)
+    ll.print()  # Should print "5 -> 5 -> 5 -> 5 -> 5 -> 5 -> 5"
+
+    # Test case: partition a list where pivot is the smallest element
+    ll = LinkedList()
+    ll.append(5)
+    ll.append(8)
+    ll.append(10)
+    ll.append(2)
+    ll.append(1)
+    print("\nTest: Partition a list where pivot is the smallest element")
+    ll.partition_optimize_v1(1)
+    ll.print()  # Should print "1 -> 5 -> 8 -> 10 -> 2"
+
+    # Test case: partition a list where pivot is the largest element
+    ll = LinkedList()
+    ll.append(5)
+    ll.append(8)
+    ll.append(10)
+    ll.append(2)
+    ll.append(1)
+    print("\nTest: Partition a list where pivot is the largest element")
+    ll.partition_optimize_v1(10)
+    ll.print()  # Should print "5 -> 8 -> 2 -> 1 -> 10"
 
 
 # Run the tests
 test_linked_list()
 test_delete_middle_node()
 test_partition()
+test_partition_v1()
 

@@ -211,8 +211,38 @@ class LinkedList():
 
 		self.head.next = left.head.next
 
-	# def partition_optimize_v1(self, pivot):
+	def partition_optimize_v1(self, pivot: int):
 
+		# This assumes that the linkedlist only contains integers
+		# Actual problem states that pivot only needs to be in right side
+		# Therefore this will return different values than the previos function
+
+		left_head, right_head = Node(), Node()
+		left_tail, right_tail = left_head, right_head
+
+		it = self.head.next
+
+		if it == None: return # If empty list nothing to do, save computing power
+
+		while it != None:
+			next_node = it.next # Save next node
+			it.next = None # Disconnect current node from the list to save storage
+
+			if it.data < pivot: # If the current node is smaller than
+				left_tail.next = it
+				left_tail = it
+			else:
+				right_tail.next = it
+				right_tail = it
+
+				
+			it = next_node
+
+		# combine left and right side
+		left_tail.next = right_head.next
+
+		# Update original list's head to point to new partitioned list
+		self.head.next = left_head.next
 
 	def sum_list():
 		pass
