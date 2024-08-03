@@ -159,10 +159,62 @@ class LinkedList():
 			return
 
 
+	def delete_middle_node(self, node):
+		# Delete a middle node
+
+		if node is None or node.next == None:
+			raise Exception(f"{node} is either an invalid node or an end node")
+
+		print(f"Deleting node: {node.data}")
+
+		next_node = node.next
+		node.data = next_node.data
+		node.next = next_node.next
+		self.size -= 1
 
 
+	def partition(self, pivot):
+		''' 
+		Partition array around pivot with smaller elements on left bigger elements
+		on the right (unsorted)
+		'''
+
+		if self.head.next == None:
+			return
+
+		left = LinkedList()
+		right = LinkedList()
+
+		it = self.head.next # Iterator
+		counter = 0 # Count num of nodes same value as val
+
+		while it != None:
+			if it.data < pivot:
+				left.append(it.data)
+			elif it.data > pivot:
+				right.append(it.data)
+			else:
+				counter += 1
+			it = it.next
+
+		while counter > 0:
+			left.append(pivot)
+			counter -= 1
+
+		# Could improve by adding a tail to linkedlist
+
+		it = right.head.next
+
+		while it != None:
+			left.append(it.data)
+			it = it.next
+
+		self.head.next = left.head.next
+
+	# def partition_optimize_v1(self, pivot):
 
 
-
+	def sum_list():
+		pass
 
 
