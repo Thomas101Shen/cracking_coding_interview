@@ -22,7 +22,7 @@ class LinkedList():
 	def append(self, d):
 		end = Node(d)
 		n = self.head
-		self.add_size
+		self.add_size()
 
 		while n.next != None:
 			n = n.next
@@ -48,7 +48,7 @@ class LinkedList():
 		while n.next is not None:
 			if n.next.data == d:
 				n.next = n.next.next
-				self.decrement_size -= 1
+				self.decrement_size()
 				print(f"Deleted {d}")
 				return
 			n = n.next
@@ -65,7 +65,7 @@ class LinkedList():
 			if n.next.data in dup_tracker:
 				print("deleting^")
 				n.next = n.next.next
-				self.decrement_size -= 1
+				self.decrement_size()
 			else:
 				dup_tracker.add(n.next.data)
 				n = n.next
@@ -80,7 +80,7 @@ class LinkedList():
 			while m.next != None:
 				if n.data == m.next.data:
 					m.next = m.next.next
-					self.decrement_size -= 1
+					self.decrement_size()
 				else:
 					m = m.next
 			if n != None: n = n.next
@@ -178,7 +178,7 @@ class LinkedList():
 		next_node = node.next
 		node.data = next_node.data
 		node.next = next_node.next
-		self.decrement_size -= 1
+		self.decrement_size()
 
 
 	def partition(self, pivot):
