@@ -367,7 +367,7 @@ class LinkedList():
 
 	def palindrome_rec(self):
 
-		is_palindrome, _ = self._palindrome_rec_helper(self.head.next, self.size)
+		is_palindrome, _ = self._palindrome_rec_helper(self.head.next, self.size())
 		return is_palindrome
 
 	def _palindrome_rec_helper(self, current, length):
