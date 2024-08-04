@@ -8,13 +8,21 @@ class LinkedList():
 
 	def __init__(self):
 		self.head = Node()
-		self.size = 0
+		self._size = 0
 
+	def size(self):
+		return self._size
+
+	def add_size(self):
+		self._size += 1
+
+	def decrement_size(self):
+		self._size -= 1
 
 	def append(self, d):
 		end = Node(d)
 		n = self.head
-		self.size += 1
+		self.add_size
 
 		while n.next != None:
 			n = n.next
@@ -40,7 +48,7 @@ class LinkedList():
 		while n.next is not None:
 			if n.next.data == d:
 				n.next = n.next.next
-				self.size -= 1
+				self.decrement_size -= 1
 				print(f"Deleted {d}")
 				return
 			n = n.next
@@ -57,7 +65,7 @@ class LinkedList():
 			if n.next.data in dup_tracker:
 				print("deleting^")
 				n.next = n.next.next
-				self.size -= 1
+				self.decrement_size -= 1
 			else:
 				dup_tracker.add(n.next.data)
 				n = n.next
@@ -72,19 +80,19 @@ class LinkedList():
 			while m.next != None:
 				if n.data == m.next.data:
 					m.next = m.next.next
-					self.size -= 1
+					self.decrement_size -= 1
 				else:
 					m = m.next
 			if n != None: n = n.next
 
 
 	def k_to_last_size(self, k):
-		if k > self.size:
+		if k > self.size():
 			print("invalid kth to last")
 			return
 		count = 0
 		n = self.head
-		while count != self.size - k:
+		while count != self.size() - k:
 			# print(f"{count}, {self.size - 1 - k}")
 			# print(f"current node: {n.data}")
 			count += 1
@@ -170,7 +178,7 @@ class LinkedList():
 		next_node = node.next
 		node.data = next_node.data
 		node.next = next_node.next
-		self.size -= 1
+		self.decrement_size -= 1
 
 
 	def partition(self, pivot):
@@ -388,6 +396,4 @@ class LinkedList():
 
 		is_palindrome = (current.data == next_node.data)
 		return is_palindrome, next_node.next
-
-
 
