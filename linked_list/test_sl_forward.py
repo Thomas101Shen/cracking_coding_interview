@@ -1,0 +1,59 @@
+from linked_list import LinkedList
+
+def test_sum_list():
+    # Test case: sum of two empty lists
+    ll1 = LinkedList()
+    ll2 = LinkedList()
+    result = LinkedList()
+    result.head.next = ll1.sum_list_forward(ll1.head.next, ll2.head.next)
+    print("Test: Sum of two empty lists")
+    result.print()  # Should print "Empty list"
+
+    # Test case: sum of one empty list and one non-empty list
+    ll1 = LinkedList()
+    ll2 = LinkedList()
+    ll2.append(3)
+    ll2.append(4)
+    result = LinkedList()
+    result.head.next = ll1.sum_list_forward(ll1.head.next, ll2.head.next)
+    print("Test: Sum of one empty list and one non-empty list")
+    result.print()  # Should print "3 -> 4"
+
+    # Test case: sum of two non-empty lists with no carryover
+    ll1 = LinkedList()
+    ll1.append(2)
+    ll1.append(3)
+    ll2 = LinkedList()
+    ll2.append(4)
+    ll2.append(5)
+    result = LinkedList()
+    result.head.next = ll1.sum_list_forward(ll1.head.next, ll2.head.next)
+    print("Test: Sum of two non-empty lists with no carryover")
+    result.print()  # Should print "6 -> 8"
+
+    # Test case: sum of two non-empty lists with carryover
+    ll1 = LinkedList()
+    ll1.append(5)
+    ll1.append(6)
+    ll2 = LinkedList()
+    ll2.append(7)
+    ll2.append(8)
+    result = LinkedList()
+    result.head.next = ll1.sum_list_forward(ll1.head.next, ll2.head.next)
+    print("Test: Sum of two non-empty lists with carryover")
+    result.print()  # Should print "1 -> 3 -> 4"
+
+    # Test case: sum of lists with different lengths
+    ll1 = LinkedList()
+    ll1.append(9)
+    ll1.append(9)
+    ll1.append(9)
+    ll2 = LinkedList()
+    ll2.append(1)
+    result = LinkedList()
+    result.head.next = ll1.sum_list_forward(ll1.head.next, ll2.head.next)
+    print("Test: Sum of lists with different lengths")
+    result.print()  # Should print "1 -> 0 -> 0 -> 0"
+
+# Run the tests
+test_sum_list()

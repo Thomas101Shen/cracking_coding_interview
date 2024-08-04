@@ -246,7 +246,8 @@ class LinkedList():
 
 	def sum_list(self, A, B, carry: int = 0):
 		# Non trivial solution, no converting to str or int and adding and re converting
-
+		# Inputs are reverse lists with unit digit leading
+		# ex: 132 is 2 -> 3 -> 1
 		if A is None and B is None and carry == 0:
 			sum_head = Node()
 			return sum_head, sum_head
@@ -270,13 +271,15 @@ class LinkedList():
 		prev_node.next = cur_node
 
 		return sum_head, cur_node
+		# Can make this a helper function in another function to return
+		# just sum_head (see palindrome recursive)
 
 	def sum_list_optimized(self, A, B, carry: int = 0):
 		carry = 0
 		dummy_head = Node()
 		cur = dummy_head
 
-		while A is not None or B is not None or carry != 0:
+		while A is not None or B is not None or carry != 0: # 56 + 78
 			total = carry
 			if A:
 				total += A.data
@@ -284,6 +287,39 @@ class LinkedList():
 			if B:
 				total += B.data
 				B = B.next
+
+			cur_val = total % 10
+			carry = total // 10
+
+			cur.next = Node(cur_val)
+			cur = cur.next
+		return self.reverse_ls(dummy_head.next)
+
+	def sum_list_forward(self, A, B, carry: int = 0):
+
+		stackA, stackB = [], []
+
+		while A is not None:
+			stackA.append(A.data)
+			A = A.next
+
+		while B is not None:
+			stackB.append(B.data)
+			B = B.next
+
+		carry = 0
+		dummy_head = Node()
+		cur = dummy_head
+
+		print(f"stackA: {stackA}, stackB: {stackB}, carry: {carry}")
+
+
+		while stackA or stackB or carry != 0: # 56 + 78
+			total = carry			
+			if stackA:
+				total += stackA.pop()
+			if stackB:
+				total += stackB.pop()
 
 			cur_val = total % 10
 			carry = total // 10
@@ -303,5 +339,55 @@ class LinkedList():
 			current = next_node
 
 		return prev
+
+	def palindrome(self):
+		stack = []
+
+		it = self.head.next
+
+		while it is not None:
+			stack.append(it.data)
+			it = it.next
+
+		it = self.head.next
+		while stack:
+			char = stack.pop()
+			if char != it.data : return False
+			it = it.next
+
+		return True
+
+	def palindrome_rec(self):
+
+		is_palindrome, _ = self._palindrome_rec_helper(self.head.next, self.size)
+		return is_palindrome
+
+	def _palindrome_rec_helper(self, current, length):
+		'''
+		This works by going to the middle node
+		then using the call stack to compare
+		nodes of equal distance from the middle.
+		next_node represents a node on the right side
+		of the palindrome.
+		current node represents a node on the left side of the palindrome.
+		If next_node is None then there is no character to match the
+		node on the left side with therefore function returns False.
+		If next_node is not equal to current node then left side character
+		does not match with right side character.
+		'''
+
+		if current is None or length == 0: # Evens
+			return True, current
+		elif length == 1: # Odds
+			return True, current.next
+
+		is_palindrome, next_node = self._palindrome_rec_helper(current.next, length - 2)
+
+		if not is_palindrome or next_node is None:
+			return False, next_node
+
+		is_palindrome = (current.data == next_node.data)
+		return is_palindrome, next_node.next
+
 
 
