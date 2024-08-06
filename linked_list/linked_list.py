@@ -397,3 +397,27 @@ class LinkedList():
 		is_palindrome = (current.data == next_node.data)
 		return is_palindrome, next_node.next
 
+
+    # def create_loop(self, start_node):
+    #     """ Utility function to create a loop in the linked list. """
+    #     current = self.head.next
+    #     start = None
+    #     while current.next is not None:
+    #         if current.data == start_node:
+    #             start = current
+    #         current = current.next
+    #     current.next = start
+
+
+    # def detect_loop_start(self):
+    	
+
+
+
+
+
+
+
+
+
+
